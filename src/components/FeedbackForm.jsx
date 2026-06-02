@@ -5,7 +5,10 @@ import {
   Send
 } from "lucide-react"
 
-function FeedbackForm() {
+function FeedbackForm({
+  evaluations,
+  onSubmitEvaluation
+}){
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
@@ -13,14 +16,38 @@ function FeedbackForm() {
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
-    e.preventDefault()
 
-    setSubmitted(true)
+  e.preventDefault()
 
-    setTimeout(() => {
-      setSubmitted(false)
-    }, 3000)
+  const average =
+    evaluations.reduce(
+      (acc, item) => acc + item.rating,
+      0
+    ) / evaluations.length
+
+  const newEvaluation = {
+
+    date:
+      new Date().toLocaleDateString(),
+
+    average,
+
+    comment
   }
+
+  onSubmitEvaluation(newEvaluation)
+
+  setSubmitted(true)
+
+  setComment("")
+  setRating(0)
+
+  setTimeout(() => {
+
+    setSubmitted(false)
+
+  }, 3000)
+}
 
   return (
 

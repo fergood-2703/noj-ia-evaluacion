@@ -8,6 +8,9 @@ import InteractiveEvaluationCard
 import StatisticsDashboard
   from "./components/StatisticsDashboard"
 
+import EvaluationHistory
+  from "./components/EvaluationHistory"
+
 import {
   Bot,
   HeartPulse,
@@ -105,6 +108,16 @@ function App() {
       : defaultEvaluations
   })
 
+  const [history, setHistory] = useState(() => {
+
+    const saved =
+      localStorage.getItem("noj-history")
+
+    return saved
+      ? JSON.parse(saved)
+      : []
+  })
+
   useEffect(() => {
 
     localStorage.setItem(
@@ -114,6 +127,15 @@ function App() {
 
   }, [evaluations])
 
+  useEffect(() => {
+
+    localStorage.setItem(
+      "noj-history",
+      JSON.stringify(history)
+    )
+
+  }, [history])
+
   const handleRate = (index, value) => {
 
     const updated = [...evaluations]
@@ -122,6 +144,15 @@ function App() {
 
     setEvaluations(updated)
   }
+
+  const handleSubmitEvaluation =
+    (evaluation) => {
+
+      setHistory(prev => [
+        evaluation,
+        ...prev
+      ])
+    }
 
   const average =
     evaluations.reduce(
@@ -198,7 +229,16 @@ function App() {
 
       </section>
 
-      <FeedbackForm />
+      <FeedbackForm
+        evaluations={evaluations}
+        onSubmitEvaluation={
+          handleSubmitEvaluation
+        }
+      />
+
+      <EvaluationHistory
+        history={history}
+      />
 
     </main>
 
