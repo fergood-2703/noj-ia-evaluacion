@@ -1,8 +1,13 @@
 import {
-  Github,
   Code2,
   Globe,
-  GraduationCap
+  GraduationCap,
+  Terminal,
+  BookOpen,
+  Cpu,
+  Layers3,
+  UserRound,
+  MonitorSmartphone
 } from "lucide-react"
 
 function Footer() {
@@ -12,8 +17,6 @@ function Footer() {
     <footer className="footer">
 
       <div className="footer-content">
-
-        {/* LEFT */}
 
         <div className="footer-brand">
 
@@ -46,8 +49,6 @@ function Footer() {
 
         </div>
 
-        {/* CENTER */}
-
         <div className="footer-links">
 
           <h3>
@@ -62,20 +63,18 @@ function Footer() {
             </li>
 
             <li>
-              <Globe size={16} />
+              <MonitorSmartphone size={16} />
               Responsive Design
             </li>
 
             <li>
-              <Github size={16} />
+              <Terminal size={16} />
               GitHub
             </li>
 
           </ul>
 
         </div>
-
-        {/* RIGHT */}
 
         <div className="footer-academic">
 
@@ -94,9 +93,37 @@ function Footer() {
 
           </div>
 
-          <p>
-            Proyecto académico — 2026
-          </p>
+          <div className="academic-line">
+            <BookOpen size={16} />
+
+            <p>
+              Materia: SCC - 1012 Inteligencia Artificial
+            </p>
+          </div>
+
+          <div className="academic-line">
+            <Cpu size={16} />
+
+            <p>
+              Carrera: Ingeniería en Sistemas Computacionales
+            </p>
+          </div>
+
+          <div className="academic-line">
+            <Layers3 size={16} />
+
+            <p>
+              Semestre y Grupo: 8° A
+            </p>
+          </div>
+
+          <div className="academic-line">
+            <UserRound size={16} />
+
+            <p>
+              Profesor: Ing. Plácido Balam Can
+            </p>
+          </div>
 
         </div>
 

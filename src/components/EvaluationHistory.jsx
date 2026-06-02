@@ -8,106 +8,103 @@ function EvaluationHistory({ history }) {
 
   return (
 
-    <>
-      <div
-        id="history"
-        className="section-anchor"
-      />
+    <section
+      className="history-section"
+      id="history"
+    >
 
-      <section className="history-section">
+      <div className="history-header">
 
-        <div className="history-header">
+        <h2>
+          Historial de Evaluaciones
+        </h2>
 
-          <h2>
-            Historial de Evaluaciones
-          </h2>
+        <p>
+          Registro de evaluaciones realizadas sobre la plataforma.
+        </p>
 
-          <p>
-            Registro de evaluaciones realizadas sobre la plataforma.
-          </p>
+      </div>
+
+      <div className="history-table">
+
+        <div className="history-table-head">
+
+          <span>Fecha</span>
+          <span>Promedio</span>
+          <span>Comentario</span>
+          <span>Estado</span>
 
         </div>
 
-        <div className="history-table">
+        {
+          history.length === 0 ? (
 
-          <div className="history-table-head">
+            <div className="empty-history">
 
-            <span>Fecha</span>
-            <span>Promedio</span>
-            <span>Comentario</span>
-            <span>Estado</span>
+              No hay evaluaciones registradas.
 
-          </div>
+            </div>
 
-          {
-            history.length === 0 ? (
+          ) : (
 
-              <div className="empty-history">
+            history.map((item, index) => (
 
-                No hay evaluaciones registradas.
+              <div
+                className="history-row"
+                key={index}
+              >
 
-              </div>
+                <div className="history-cell">
 
-            ) : (
+                  <CalendarDays size={16} />
 
-              history.map((item, index) => (
-
-                <div
-                  className="history-row"
-                  key={index}
-                >
-
-                  <div className="history-cell">
-
-                    <CalendarDays size={16} />
-
-                    <span>
-                      {item.date}
-                    </span>
-
-                  </div>
-
-                  <div className="history-cell">
-
-                    <Star
-                      size={16}
-                      fill="#1D9E75"
-                      color="#1D9E75"
-                    />
-
-                    <span>
-                      {item.average.toFixed(1)}
-                    </span>
-
-                  </div>
-
-                  <div className="history-cell comment">
-
-                    <MessageSquare size={16} />
-
-                    <span>
-                      {item.comment}
-                    </span>
-
-                  </div>
-
-                  <div className="history-status">
-
-                    Excelente
-
-                  </div>
+                  <span>
+                    {item.date}
+                  </span>
 
                 </div>
 
-              ))
+                <div className="history-cell">
 
-            )
-          }
+                  <Star
+                    size={16}
+                    fill="#1D9E75"
+                    color="#1D9E75"
+                  />
 
-        </div>
+                  <span>
+                    {item.average.toFixed(1)}
+                  </span>
 
-      </section>
-    </>
+                </div>
+
+                <div className="history-cell comment">
+
+                  <MessageSquare size={16} />
+
+                  <span>
+                    {item.comment}
+                  </span>
+
+                </div>
+
+                <div className="history-status">
+
+                  Excelente
+
+                </div>
+
+              </div>
+
+            ))
+
+          )
+        }
+
+      </div>
+
+    </section>
+    
 
   )
 }

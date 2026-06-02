@@ -874,6 +874,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
 .navbar {
@@ -1386,9 +1387,200 @@ html {
 
 }
 
-/* SCROLL OFFSET */
 
-.section-anchor {
-  position: relative;
-  top: -120px;
+
+/* FOOTER */
+
+.footer {
+  margin-top: 120px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green-dark),
+      #06392F
+    );
+
+  color: white;
+
+  overflow: hidden;
+}
+
+.footer-content {
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 80px 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    1.2fr
+    1fr
+    1fr;
+
+  gap: 60px;
+}
+
+/* BRAND */
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.footer-logo-box {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      var(--green-light)
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+
+  font-weight: 800;
+
+  font-family: 'Nunito';
+}
+
+.footer-brand h2 {
+  font-size: 26px;
+
+  font-family: 'Nunito';
+}
+
+.footer-brand span {
+  color:
+    rgba(255,255,255,0.72);
+
+  font-size: 14px;
+}
+
+.footer-brand p {
+  max-width: 340px;
+
+  line-height: 1.9;
+
+  color:
+    rgba(255,255,255,0.78);
+}
+
+/* LINKS */
+
+.footer-links h3,
+.footer-academic h3 {
+  font-size: 22px;
+
+  font-family: 'Nunito';
+
+  margin-bottom: 22px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 16px;
+
+  color:
+    rgba(255,255,255,0.82);
+}
+
+/* ACADEMIC */
+
+.academic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  line-height: 1.8;
+
+  color:
+    rgba(255,255,255,0.82);
+}
+
+.footer-academic p {
+  margin-top: 18px;
+
+  color:
+    rgba(255,255,255,0.72);
+}
+
+/* BOTTOM */
+
+.footer-bottom {
+  border-top:
+    1px solid rgba(255,255,255,0.08);
+
+  padding: 24px;
+
+  text-align: center;
+
+  color:
+    rgba(255,255,255,0.60);
+
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .footer-content {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+}
+
+/* ACADEMIC */
+
+.academic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  line-height: 1.8;
+
+  color:
+    rgba(255,255,255,0.82);
+}
+
+.academic-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-top: 14px;
+
+  color:
+    rgba(255,255,255,0.82);
+
+  line-height: 1.7;
+}
+
+.academic-line svg {
+  margin-top: 3px;
+
+  flex-shrink: 0;
 }

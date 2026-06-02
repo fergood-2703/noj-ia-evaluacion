@@ -47,64 +47,61 @@ function AboutProject() {
 
   return (
 
-    <>
-      <div
-        id="about"
-        className="section-anchor"
-      />
+    <section
+      className="about-section"
+      id="about"
+    >
 
-      <section className="about-section">
+      <div className="about-header">
 
-        <div className="about-header">
+        <span>
+          SOBRE EL PROYECTO
+        </span>
 
-          <span>
-            SOBRE EL PROYECTO
-          </span>
+        <h2>
+          Tecnología enfocada en inclusión comunitaria
+        </h2>
 
-          <h2>
-            Tecnología enfocada en inclusión comunitaria
-          </h2>
+        <p>
+          Noj IA es un asistente comunitario híbrido diseñado
+          para apoyar a comunidades rurales mediante acceso
+          accesible a información sobre salud, programas
+          sociales y orientación ciudadana.
+        </p>
 
-          <p>
-            Noj IA es un asistente comunitario híbrido diseñado
-            para apoyar a comunidades rurales mediante acceso
-            accesible a información sobre salud, programas
-            sociales y orientación ciudadana.
-          </p>
+      </div>
 
-        </div>
+      <div className="about-grid">
 
-        <div className="about-grid">
+        {
+          features.map((item, index) => (
 
-          {
-            features.map((item, index) => (
+            <div
+              className="about-card"
+              key={index}
+            >
 
-              <div
-                className="about-card"
-                key={index}
-              >
-
-                <div className="about-icon">
-                  {item.icon}
-                </div>
-
-                <h3>
-                  {item.title}
-                </h3>
-
-                <p>
-                  {item.description}
-                </p>
-
+              <div className="about-icon">
+                {item.icon}
               </div>
 
-            ))
-          }
+              <h3>
+                {item.title}
+              </h3>
 
-        </div>
+              <p>
+                {item.description}
+              </p>
 
-      </section>
-    </>
+            </div>
+
+          ))
+        }
+
+      </div>
+
+    </section>
+    
 
   )
 }

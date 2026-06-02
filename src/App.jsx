@@ -19,6 +19,8 @@ import AboutProject
 import MockupShowcase
   from "./components/MockupShowcase"
 
+import Footer from "./components/Footer"
+
 import {
   Bot,
   HeartPulse,
@@ -173,8 +175,6 @@ function App() {
     <>
       <Navbar />
 
-      <main className="app-container"></main>
-
       <main className="app-container">
 
         <Hero average={average} />
@@ -207,63 +207,61 @@ function App() {
 
         </section>
 
-        <>
-          <div
-            id="evaluations"
-            className="section-anchor"
-          />
+        <section
+          className="evaluations-section"
+          id="evaluations"
+        >
 
-          <section className="evaluations-section">
+          <div className="section-title">
 
-            <div className="section-title">
+            <h2>
+              Evaluación Modular
+            </h2>
 
-              <h2>
-                Evaluación Modular
-              </h2>
+            <p>
+              Califica individualmente cada componente de Noj IA.
+            </p>
 
-              <p>
-                Califica individualmente cada componente de Noj IA.
-              </p>
+          </div>
 
-            </div>
+          <div className="evaluations-grid">
 
-            <div className="evaluations-grid">
+            {
+              evaluations.map((item, index) => (
 
-              {
-                evaluations.map((item, index) => (
+                <InteractiveEvaluationCard
+                  key={index}
+                  {...item}
+                  icon={getIcon(item.iconKey)}
+                  onRate={(value) =>
+                    handleRate(index, value)
+                  }
+                />
 
-                  <InteractiveEvaluationCard
-                    key={index}
-                    {...item}
-                    icon={getIcon(item.iconKey)}
-                    onRate={(value) =>
-                      handleRate(index, value)
-                    }
-                  />
+              ))
+            }
 
-                ))
-              }
+          </div>
 
-            </div>
+        </section>
+      
 
-          </section>
-        </>
+      <FeedbackForm
+        evaluations={evaluations}
+        onSubmitEvaluation={
+          handleSubmitEvaluation
+        }
+      />
 
-        <FeedbackForm
-          evaluations={evaluations}
-          onSubmitEvaluation={
-            handleSubmitEvaluation
-          }
-        />
+      <EvaluationHistory
+        history={history}
+      />
 
-        <EvaluationHistory
-          history={history}
-        />
+      <AboutProject />
+      <MockupShowcase />
+      <Footer />
 
-        <AboutProject />
-        <MockupShowcase />
-
-      </main>
+    </main >
     </>
 
   )
