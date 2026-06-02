@@ -1,10 +1,12 @@
-import { useState } from "react"
-
+import { useEffect, useState } from "react"
 import Hero from "./components/Hero"
 import FeedbackForm from "./components/FeedbackForm"
 
 import InteractiveEvaluationCard
-from "./components/InteractiveEvaluationCard"
+  from "./components/InteractiveEvaluationCard"
+
+import StatisticsDashboard
+  from "./components/StatisticsDashboard"
 
 import {
   Bot,
@@ -15,59 +17,102 @@ import {
   BarChart3
 } from "lucide-react"
 
+const defaultEvaluations = [
+  {
+    title: "Asistente IA",
+    description:
+      "Evaluación del sistema conversacional inteligente.",
+    rating: 4,
+    color: "#1D9E75",
+    bgColor: "#E1F5EE",
+    iconKey: "bot"
+  },
+
+  {
+    title: "Salud Preventiva",
+    description:
+      "Acceso a información básica de salud comunitaria.",
+    rating: 4,
+    color: "#BA7517",
+    bgColor: "#FAEEDA",
+    iconKey: "health"
+  },
+
+  {
+    title: "Modo Offline",
+    description:
+      "Funcionamiento sin conexión a internet.",
+    rating: 5,
+    color: "#7F77DD",
+    bgColor: "#EEEDFE",
+    iconKey: "offline"
+  },
+
+  {
+    title: "Programas Sociales",
+    description:
+      "Información y acceso a apoyos gubernamentales.",
+    rating: 4,
+    color: "#D85A30",
+    bgColor: "#FAECE7",
+    iconKey: "programs"
+  },
+
+  {
+    title: "Accesibilidad",
+    description:
+      "Facilidad de uso para comunidades rurales.",
+    rating: 5,
+    color: "#0F6E56",
+    bgColor: "#E1F5EE",
+    iconKey: "accessibility"
+  }
+]
+
+const getIcon = (key) => {
+
+  switch (key) {
+
+    case "bot":
+      return <Bot size={24} />
+
+    case "health":
+      return <HeartPulse size={24} />
+
+    case "offline":
+      return <WifiOff size={24} />
+
+    case "programs":
+      return <FileText size={24} />
+
+    case "accessibility":
+      return <ShieldCheck size={24} />
+
+    default:
+      return null
+  }
+}
+
 function App() {
 
-  const [evaluations, setEvaluations] = useState([
-    {
-      title: "Asistente IA",
-      description:
-        "Evaluación del sistema conversacional inteligente.",
-      rating: 4,
-      color: "#1D9E75",
-      bgColor: "#E1F5EE",
-      icon: <Bot size={24} />
-    },
+  const [evaluations, setEvaluations] = useState(() => {
 
-    {
-      title: "Salud Preventiva",
-      description:
-        "Acceso a información básica de salud comunitaria.",
-      rating: 4,
-      color: "#BA7517",
-      bgColor: "#FAEEDA",
-      icon: <HeartPulse size={24} />
-    },
+    const saved =
+      localStorage.getItem("noj-evaluations")
 
-    {
-      title: "Modo Offline",
-      description:
-        "Funcionamiento sin conexión a internet.",
-      rating: 5,
-      color: "#7F77DD",
-      bgColor: "#EEEDFE",
-      icon: <WifiOff size={24} />
-    },
+    return saved
+      ? JSON.parse(saved)
+      : defaultEvaluations
+  })
 
-    {
-      title: "Programas Sociales",
-      description:
-        "Información y acceso a apoyos gubernamentales.",
-      rating: 4,
-      color: "#D85A30",
-      bgColor: "#FAECE7",
-      icon: <FileText size={24} />
-    },
+  useEffect(() => {
 
-    {
-      title: "Accesibilidad",
-      description:
-        "Facilidad de uso para comunidades rurales.",
-      rating: 5,
-      color: "#0F6E56",
-      bgColor: "#E1F5EE",
-      icon: <ShieldCheck size={24} />
-    }
-  ])
+    localStorage.setItem(
+      "noj-evaluations",
+      JSON.stringify(evaluations)
+    )
+
+  }, [evaluations])
 
   const handleRate = (index, value) => {
 
@@ -89,6 +134,10 @@ function App() {
     <main className="app-container">
 
       <Hero average={average} />
+      <StatisticsDashboard
+        evaluations={evaluations}
+        average={average}
+      />
 
       <section className="stats-section">
 
@@ -136,6 +185,7 @@ function App() {
               <InteractiveEvaluationCard
                 key={index}
                 {...item}
+                icon={getIcon(item.iconKey)}
                 onRate={(value) =>
                   handleRate(index, value)
                 }
