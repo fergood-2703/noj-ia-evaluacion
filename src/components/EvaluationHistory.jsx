@@ -8,7 +8,10 @@ function EvaluationHistory({ history }) {
 
   return (
 
-    <section className="history-section">
+    <section
+      className="history-section"
+      id="history"
+    >
 
       <div className="history-header">
 

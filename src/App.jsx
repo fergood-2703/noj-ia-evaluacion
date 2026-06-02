@@ -11,6 +11,11 @@ import StatisticsDashboard
 import EvaluationHistory
   from "./components/EvaluationHistory"
 
+import Navbar from "./components/Navbar"
+
+import AboutProject
+from "./components/AboutProject"
+
 import {
   Bot,
   HeartPulse,
@@ -162,85 +167,96 @@ function App() {
 
   return (
 
-    <main className="app-container">
+    <>
+      <Navbar />
 
-      <Hero average={average} />
-      <StatisticsDashboard
-        evaluations={evaluations}
-        average={average}
-      />
+      <main className="app-container"></main>
 
-      <section className="stats-section">
+      <main className="app-container">
 
-        <div className="stats-card">
+        <Hero average={average} />
+        <StatisticsDashboard
+          evaluations={evaluations}
+          average={average}
+        />
 
-          <div className="stats-icon">
-            <BarChart3 size={34} />
+        <section className="stats-section">
+
+          <div className="stats-card">
+
+            <div className="stats-icon">
+              <BarChart3 size={34} />
+            </div>
+
+            <div>
+
+              <h3>
+                {average.toFixed(1)}
+              </h3>
+
+              <p>
+                Promedio General del Sistema
+              </p>
+
+            </div>
+
           </div>
 
-          <div>
+        </section>
 
-            <h3>
-              {average.toFixed(1)}
-            </h3>
+        <section
+          className="evaluations-section"
+          id="evaluations"
+        >
+
+          <div className="section-title">
+
+            <h2>
+              Evaluación Modular
+            </h2>
 
             <p>
-              Promedio General del Sistema
+              Califica individualmente cada componente de Noj IA.
             </p>
 
           </div>
 
-        </div>
+          <div className="evaluations-grid">
 
-      </section>
+            {
+              evaluations.map((item, index) => (
 
-      <section className="evaluations-section">
+                <InteractiveEvaluationCard
+                  key={index}
+                  {...item}
+                  icon={getIcon(item.iconKey)}
+                  onRate={(value) =>
+                    handleRate(index, value)
+                  }
+                />
 
-        <div className="section-title">
+              ))
+            }
 
-          <h2>
-            Evaluación Modular
-          </h2>
+          </div>
 
-          <p>
-            Califica individualmente cada componente de Noj IA.
-          </p>
+        </section>
 
-        </div>
-
-        <div className="evaluations-grid">
-
-          {
-            evaluations.map((item, index) => (
-
-              <InteractiveEvaluationCard
-                key={index}
-                {...item}
-                icon={getIcon(item.iconKey)}
-                onRate={(value) =>
-                  handleRate(index, value)
-                }
-              />
-
-            ))
+        <FeedbackForm
+          evaluations={evaluations}
+          onSubmitEvaluation={
+            handleSubmitEvaluation
           }
+        />
 
-        </div>
+        <EvaluationHistory
+          history={history}
+        />
 
-      </section>
+        <AboutProject />
 
-      <FeedbackForm
-        evaluations={evaluations}
-        onSubmitEvaluation={
-          handleSubmitEvaluation
-        }
-      />
-
-      <EvaluationHistory
-        history={history}
-      />
-
-    </main>
+      </main>
+    </>
 
   )
 }

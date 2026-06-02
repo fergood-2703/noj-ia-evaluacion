@@ -4,7 +4,10 @@ function Hero({ average }) {
 
   return (
 
-    <section className="hero">
+    <section
+      className="hero"
+      id="dashboard"
+    >
 
       <div className="hero-badge">
         Plataforma de Evaluación
