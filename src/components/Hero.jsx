@@ -4,54 +4,58 @@ function Hero({ average }) {
 
   return (
 
-    <section
-      className="hero"
-      id="dashboard"
-    >
+    <>
+      <div
+        id="dashboard"
+        className="section-anchor"
+      />
 
-      <div className="hero-badge">
-        Plataforma de Evaluación
-      </div>
+      <section className="hero">
 
-      <h1>
-        NOJ IA
-      </h1>
+        <div className="hero-badge">
+          Plataforma de Evaluación
+        </div>
 
-      <p className="hero-subtitle">
-        Asistente comunitario híbrido enfocado en zonas rurales
-        con acceso limitado a internet.
-      </p>
+        <h1>
+          NOJ IA
+        </h1>
 
-      <div className="hero-card">
+        <p className="hero-subtitle">
+          Asistente comunitario híbrido enfocado en zonas rurales
+          con acceso limitado a internet.
+        </p>
 
-        <div className="hero-score">
+        <div className="hero-card">
 
-          <Star
-            size={30}
-            strokeWidth={2.5}
-          />
+          <div className="hero-score">
 
-          <h2>
-            {average.toFixed(1)}
-          </h2>
+            <Star
+              size={30}
+              strokeWidth={2.5}
+            />
+
+            <h2>
+              {average.toFixed(1)}
+            </h2>
+
+          </div>
+
+          <div className="hero-info">
+
+            <h3>
+              Evaluación General
+            </h3>
+
+            <p>
+              Plataforma evaluada mediante módulos interactivos.
+            </p>
+
+          </div>
 
         </div>
 
-        <div className="hero-info">
-
-          <h3>
-            Evaluación General
-          </h3>
-
-          <p>
-            Plataforma evaluada mediante módulos interactivos.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
+      </section>
+    </>
   )
 }
 

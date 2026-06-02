@@ -14,7 +14,10 @@ import EvaluationHistory
 import Navbar from "./components/Navbar"
 
 import AboutProject
-from "./components/AboutProject"
+  from "./components/AboutProject"
+
+import MockupShowcase
+  from "./components/MockupShowcase"
 
 import {
   Bot,
@@ -204,43 +207,47 @@ function App() {
 
         </section>
 
-        <section
-          className="evaluations-section"
-          id="evaluations"
-        >
+        <>
+          <div
+            id="evaluations"
+            className="section-anchor"
+          />
 
-          <div className="section-title">
+          <section className="evaluations-section">
 
-            <h2>
-              Evaluación Modular
-            </h2>
+            <div className="section-title">
 
-            <p>
-              Califica individualmente cada componente de Noj IA.
-            </p>
+              <h2>
+                Evaluación Modular
+              </h2>
 
-          </div>
+              <p>
+                Califica individualmente cada componente de Noj IA.
+              </p>
 
-          <div className="evaluations-grid">
+            </div>
 
-            {
-              evaluations.map((item, index) => (
+            <div className="evaluations-grid">
 
-                <InteractiveEvaluationCard
-                  key={index}
-                  {...item}
-                  icon={getIcon(item.iconKey)}
-                  onRate={(value) =>
-                    handleRate(index, value)
-                  }
-                />
+              {
+                evaluations.map((item, index) => (
 
-              ))
-            }
+                  <InteractiveEvaluationCard
+                    key={index}
+                    {...item}
+                    icon={getIcon(item.iconKey)}
+                    onRate={(value) =>
+                      handleRate(index, value)
+                    }
+                  />
 
-          </div>
+                ))
+              }
 
-        </section>
+            </div>
+
+          </section>
+        </>
 
         <FeedbackForm
           evaluations={evaluations}
@@ -254,6 +261,7 @@ function App() {
         />
 
         <AboutProject />
+        <MockupShowcase />
 
       </main>
     </>
